@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# QuizApp
 
-## Available Scripts
+Lightweight quiz application built with React and Redux Toolkit. Includes a modern dark UI, progress bar, and results summary.
 
-In the project directory, you can run:
+</div>
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Interactive multiple-choice questions
+- Progress bar showing current question out of total
+- Score tracking with result summary and restart
+- Clean dark theme with responsive card layout
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- React 19
+- Redux Toolkit + React Redux
+- Create React App tooling
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js >= 18 and npm
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone <your-fork-or-repo-url>
+cd quizapp
+npm install
+```
 
-### `npm run eject`
+### Development
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open `http://localhost:3000` in your browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Production Build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run build
+```
 
-## Learn More
+Outputs optimized assets to the `build/` directory.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+quizapp/
+  public/
+  src/
+    components/
+      Question.js      # Question view with progress bar and options
+      Result.js        # Results view with score and restart
+    redux/
+      quizSlice.js     # State: currentQuestion, score, showResult
+      store.js         # Redux store configuration
+    App.js             # Routes between Question and Result
+    index.css          # Theme and UI styles (dark mode)
+    index.js           # App bootstrap
+  package.json
+```
 
-### Code Splitting
+## How It Works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `quizSlice.js` manages quiz state. `answerQuestion` updates score and advances question until the result screen is shown. `resetQuiz` restarts the quiz.
+- `Question.js` dispatches `answerQuestion({ isCorrect, totalQuestions })` and renders a progress bar.
+- `Result.js` shows score and percent with an option to restart.
 
-### Analyzing the Bundle Size
+## Customization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Add questions in `App.js` by extending the `questions` array.
+- Tweak UI in `src/index.css` (`.card`, `.btn`, `.progress`, etc.).
 
-### Making a Progressive Web App
+## Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `npm start` - run in development
+- `npm run build` - production build
+- `npm test` - CRA tests (none customized yet)
 
-### Advanced Configuration
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
