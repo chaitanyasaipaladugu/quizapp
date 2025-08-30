@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import Question from "./components/Question";
+import Result from "./components/Result";
+
+const questions = [
+  {
+    question: "What is the capital of France?",
+    options: [
+      { text: "Paris", isCorrect: true },
+      { text: "London", isCorrect: false },
+      { text: "Berlin", isCorrect: false },
+    ],
+  },
+  {
+    question: "Which language is used in React?",
+    options: [
+      { text: "Python", isCorrect: false },
+      { text: "JavaScript", isCorrect: true },
+      { text: "C++", isCorrect: false },
+    ],
+  },
+];
 
 function App() {
+  const { showResult } = useSelector((state) => state.quiz);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-shell">
+      <div className="card">
+        {!showResult ? (
+          <Question questions={questions} />
+        ) : (
+          <Result total={questions.length} />
+        )}
+      </div>
     </div>
   );
 }
